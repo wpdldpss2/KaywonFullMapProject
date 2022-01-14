@@ -1,0 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class StartB : MonoBehaviour
+{
+    /*SceneController를 사용하여 다음 씬으로 넘어가는 기능을 가진 스크립트. 이 스크립트를 사용할 프로젝트에는 SceneController 스크립트가 들어있는 오브젝트가 반드시 있어야한다.
+     * 1.SceneName 옆에 이동을 원하는 씬의 정확한 이름을 적는다. 오타가 있으면 오류가 뜨니 주의할것! 
+     * 2.해당 스크립트를 빈 오브젝트에 넣는다.
+     * 3.다음 씬으로 넘어가기 위해 클릭을 해야하는 버튼을 제작하고 해당 버튼의 기능에 이 스크립트가 들어있는 오브젝트를 넣는다.
+     * 4.NextScene 기능을 선택한다.
+     */
+
+    [SerializeField]
+    public string SceneName;
+    private SceneController sceneController;
+
+
+    void Start()
+    {
+        sceneController = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneController>();
+    }
+    public void NextScene()
+    {
+        sceneController.LoadScene(SceneName);
+
+    }
+
+}
