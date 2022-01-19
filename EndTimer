@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+
+
+public class EndTimer : MonoBehaviour
+{
+    /* 일정 시간 지난 후 다른 씬으로 넘어가게 해주는 스크립트. 보통 시간 제한을 설정하고 싶을때 사용.
+     * 1.빈 오브젝트를 만들어서 이 스크립트를 넣어준다.
+     * 2.total time에 얼마만큼의 시간이 지난 후에 넘어가고 싶은지 작성. 
+     * 3.Sname 에 넘어가고싶은 씬 이름 작성
+     * 하면 totaltime의 시간 뒤에 작성한 씬으로 이동.
+     */
+
+    private float startingTime;
+    public float totalTime = 600;
+    public Text text;
+    private float minutes;
+    private float seconds;
+    public string Sname = "choice";
+    void Start()
+    {
+        startingTime = totalTime;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        totalTime -= Time.deltaTime;
+        minutes = (int)(totalTime / 60);
+        seconds = (int)(totalTime % 60);
+
+        if (minutes <= 0 && seconds <= 0)
+        {
+            SceneManager.LoadScene(Sname);
+        }
+
+        text.text = minutes.ToString() + ":" + seconds.ToString();
+    }
+}
