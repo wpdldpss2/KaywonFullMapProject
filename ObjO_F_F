@@ -1,0 +1,23 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ObjO_F_F : MonoBehaviour
+{
+    /* 오브젝트 3개 있을때 하나는 켜고 두개는 끄는 기능
+     * 1.빈 오브젝트에 이 스크립트 추가.
+     * 2.obj1에는 키곳싶은 오브젝트를, 2와3에는 끄고싶은 오브젝트를 넣는다.
+     * 3.버튼에 이 스크립트가 있는 오브젝트 넣고 Play() 선택.
+     */
+
+    public GameObject obj1;
+    public GameObject obj2;
+    public GameObject obj3;
+    // Start is called before the first frame update
+    public void Play()
+    {
+        obj1.SetActive(true);
+        obj2.SetActive(false);
+        obj3.SetActive(false);
+    }
+}
