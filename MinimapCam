@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MinimapCam : MonoBehaviour
+{
+    /* 미니맵 카메라에 넣는 스크립트
+     * 1.카메라에 이 스크립트 넣기. 
+     * 2. Player에 미니맵이 따라다닐 플레이어 오브젝트 넣기
+     */
+    public Transform player;
+
+    void Start()
+    {
+        Vector3 newPosition = player.position;
+        newPosition.y = 70;
+        transform.position = newPosition;
+
+    }
+
+    private void LateUpdate()
+    {
+        Vector3 newPosition = player.position;
+        newPosition.y = 70;
+        transform.position = newPosition;
+    }
+}
