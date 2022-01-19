@@ -1,0 +1,37 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LoadAndChangeScene : MonoBehaviour
+{
+    /*
+     * 로딩 글자가 뜬 후에 씬 전환
+     * 1.빈 오브젝트에 collider를 생성하고 is trigger를 체크한다.
+     * 2.플레이어는 Animal 태그가 있어야지 작동함. 이 태그를 가진 물체가 많다면 밑의 스크립트의 "Animal" 을 플레이어의 태그로 변경하고 진행한다.
+     * 3.이 스크립트를 제작한 오브젝트어 넣는다.
+     * 4.loading 이라는 글자를 텍스트에 적거나 obj를 가져와서 hierarchy에 넣는다.
+     * 5.Sname에 넘어가고싶은 씬의 이름을 넣는다.
+     * 6.제작한 로딩을 이 스크립트의 load에 넣어준다
+     * 7.설정한 태그를 가진 오브젝트가 이 콜라이더 내부로 들어오면 로딩 오브젝트가 켜지며 화면 전환이 이루어진다.
+     */
+    private SceneController sceneController;
+    public string SName;
+    public GameObject load;
+    void Start()
+    {
+        sceneController = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneController>();
+
+        load.SetActive(false);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Animal")
+        {
+            load.SetActive(true);
+
+            sceneController.LoadScene(SName);
+        }
+
+    }
+}
