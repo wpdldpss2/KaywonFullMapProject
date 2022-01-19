@@ -1,0 +1,86 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MenuOnOff : MonoBehaviour
+{
+    /*메뉴를 켰다 끌 수 있게 해주는 스크립트. 일시정지를 하면 메뉴가 나오도록 해준다.
+     * 1.빈 오브젝트에 이 스크립트를 넣는다.
+     * 2.onP에는 메뉴가 켜질때 나와야하는 Ui를 묶어놓은 오브젝트를,offP에는 메뉴가 켜져있지 않을 때 즉 플레이중에 나와야하는 UI를 묶어놓은 오브젝트를 넣는다.
+     * 3.Wait에는 loading 오브젝트를 넣는다.
+     * 4.Sname에는 메뉴에서 백스페이스 키를 누를 시 돌아갈 씬의 이름을 적는다.
+     * 5.obj1,2,3 에는 매뉴 내부에서 켜졌다 꺼질 3가지 오브젝트를 넣는다. obj1이 가장 먼저 켜져있을 오브젝트, 2와3이 메뉴 오픈시에는 꺼져있다가 나중에 켜질 오브젝트.
+     */
+
+    private SceneController sceneController;
+    public string Sname;
+    public GameObject onP;
+    public GameObject offP;
+    bool isPaused;
+    public GameObject Wait;
+    public GameObject obj1;
+    public GameObject obj2;
+    public GameObject obj3;
+   
+    void Start()
+    {
+        sceneController = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneController>();
+
+        onP.SetActive(false);
+        offP.SetActive(true);
+        Wait.SetActive(false);
+        obj1.SetActive(false);
+        obj2.SetActive(false);
+        obj3.SetActive(false);
+
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                MenuOff();
+            }
+            else
+            {
+                MenuOn();
+            }
+
+
+        }
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            if (isPaused)
+            {
+                BackToMain();
+            }
+        }
+    }
+    public void MenuOn()
+    {
+        isPaused = true;
+        offP.SetActive(false);
+        onP.SetActive(true);
+        obj1.SetActive(true);
+        obj2.SetActive(false);
+        obj3.SetActive(false);
+        Time.timeScale = 0f;
+    }
+    public void MenuOff()
+    {
+
+        isPaused = false;
+        offP.SetActive(true);
+        onP.SetActive(false);
+        Time.timeScale = 1f;
+
+    }
+    public void BackToMain()
+    {
+        Wait.SetActive(true);
+        Time.timeScale = 1f;
+        sceneController.LoadScene(Sname);
+    }
+}
