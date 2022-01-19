@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class OnOffOnClick1 : MonoBehaviour
+{
+    /*버튼으로 오브젝트 하나 켜고 하나 끄는 스크립트.
+     * 1. 빈 오브젝트에 이 스크립트 추가.
+     * 2.On에는 켤 오브젝트를, Off에는 끌 오브젝트를 추가한다.
+     * 3.버튼의 기능에 이 스크립트가 있는 오브젝트 넣고 Click() 선택.
+     */
+    public GameObject objOn;
+    public GameObject objOff;
+    public void Click()
+    {
+        objOn.SetActive(true);
+        objOff.SetActive(false);
+    }
+
+   
+}
