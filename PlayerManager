@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class PlayerManager : MonoBehaviour
+{
+    /*
+     * 플레이어 사망시 choice 씬으로 넘어가기. "choice"에 원하는 씬 이름 넣어서 넘어갈 씬 변경 가능.
+     */
+    #region Singleton
+
+    public static PlayerManager instance;
+
+    void Awake()
+    {
+        instance = this;
+    }
+
+    #endregion
+
+    public GameObject player;
+
+    public void KillPlayer()
+    {
+        SceneManager.LoadScene("choice");
+        //ScoreSystem.theScore = 0;
+    }
+    
+    
+}
