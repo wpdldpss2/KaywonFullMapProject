@@ -1,0 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class StartWithWait : MonoBehaviour
+{
+    /*
+     * 로딩 문구 뜬 이후에 씬 전환 
+     */
+    public string SceneName;
+    private SceneController sceneController;
+    public GameObject Load;
+
+    void Start()
+    {
+        sceneController = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneController>();
+        Load.SetActive(false);
+
+    }
+
+    // Update is called once per frame
+    public void ToNextScene()
+    {
+        Load.SetActive(true);
+        sceneController.LoadScene(SceneName);
+
+    }
+}
