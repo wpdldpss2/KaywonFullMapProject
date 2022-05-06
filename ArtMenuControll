@@ -1,0 +1,38 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ArtMenuControll : MonoBehaviour
+{
+
+    /*
+     * 메뉴를 켰을 때 나오는 4개의 메뉴화면을 버튼을 통해서 조절하는 스크립트.
+     * 메뉴에 있는 4개의 요소에 각자 on에는 본인 오브젝트 넣고 off1,2,3에는 나머지 3개의 오브젝트 넣기.
+     * cam에는 미니맵 카메라 넣기.
+     * 새로운 오브젝트4개에 동일한 스크립트 하나씩 넣고 on,off에 각 메뉴화면들 지정해서 넣어준다. 
+     * 메뉴를 조절하는 버튼에 각 열고싶은 메뉴가 on인 오브젝트를 넣어서 활성화.
+     */
+    public GameObject On;
+    public GameObject off1;
+    public GameObject off2;
+    public GameObject off3;
+    public GameObject cam;
+
+    
+    public void GetOn()
+    {
+        On.SetActive(true);
+        off1.SetActive(false);
+        off2.SetActive(false);
+        off3.SetActive(false);
+    }
+    public void CamOn()
+    {
+        cam.SetActive(true);
+    }
+    public void camOff()
+    {
+        cam.SetActive(false);
+    }
+    
+}
