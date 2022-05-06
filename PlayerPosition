@@ -1,0 +1,38 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerPosition : SceneController
+{
+    /*
+     * 직전 씬에 따라 현재 플레이어 시작위치 변경하기.
+     * prevScene 옆의 씬 이름에 직전씬을 넣고 currentScene옆에 현재 씬의 이름과 원하는 위치를 넣어준다.
+     */
+    public GameObject Player;
+    //public GameObject wall;
+
+    public override void Start()
+    {
+        base.Start();
+
+        if (prevScene == "Game 2")
+        {
+            if (currentScene == "Game 1")
+            {
+                Player.transform.rotation = Quaternion.Euler(0, -180, 0);                
+                Player.transform.position = new Vector3(71, 9.8f, 3);
+
+                Debug.Log("ddd");
+            }
+        }
+       
+       
+        
+
+        /*Player.position = new Vector3(21, 2, 30);  
+        Player.rotation = Quaternion.Euler(0, 180, 0);*/
+
+    }
+
+    
+}
