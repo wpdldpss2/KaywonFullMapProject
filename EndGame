@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EndGame : MonoBehaviour
+{
+    /*
+     * 버튼 누르면 게임 종료.
+     * 빈 스크립트에 추가하고 종료 버튼에다 해당 스크립트 넣어주기.
+     */
+    public void Ending()
+    {
+        
+            Application.Quit();
+        
+    }
+}
