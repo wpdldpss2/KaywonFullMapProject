@@ -1,0 +1,35 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class loading : MonoBehaviour
+{
+    /*
+     * 콜라이더 들어가면 로딩 하면서 씬 전환하는 스크립트.
+     * 콜라이더 있는 오브젝트에 이 스크립트 추가하기.
+     * SName에는 이동 할 씬 제목 넣기.
+     * load에는 로딩중 문구 오브젝트 넣기.
+     * 플레이어 태그를 가진 물체가 콜라이더에 들어가면 로딩 화면이 뜨면서 씬 전환.
+     */
+
+    private SceneController sceneController;
+    public string SName;
+    public GameObject load;
+    void Start()
+    {
+        sceneController = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneController>();
+
+        load.SetActive(false);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            load.SetActive(true);
+
+            sceneController.LoadScene(SName);
+        }
+
+    }
+}
