@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Video;
+
+public class nextSceneAfterVideo : MonoBehaviour
+{
+    /*
+     * 비디오 재생 후 씬 전환
+     * Vp에 비디오 플레이어 넣고 SceneName에 넘어갈 씬 이름 넣기.
+     */
+
+    private SceneController sceneController;
+
+    public VideoPlayer VP;
+    public string SceneName;
+    private void Start()
+    {
+        sceneController = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneController>();
+
+        VP.loopPointReached += loadScene;
+
+    }
+
+    void loadScene(VideoPlayer vp)
+    {
+        sceneController.LoadScene(SceneName);
+    }
+
+}
