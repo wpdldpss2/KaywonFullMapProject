@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Video;
+
+
+public class VideoPlayOnClick :MonoBehaviour
+{
+    /*
+     * 버튼 사용해서 비디오를 키고 끄기.
+     */
+    public GameObject videoPlayer;
+    public GameObject audioSource;
+    public GameObject rImg;
+
+    public void Start()
+    {
+        videoPlayer.SetActive(false);
+    }
+    public void VidOn()
+    {
+        videoPlayer.SetActive(true);
+        audioSource.SetActive(false);
+        rImg.SetActive(false);
+    } 
+    public void VidOff()
+    {
+        videoPlayer.SetActive(false);
+        audioSource.SetActive(true);
+        rImg.SetActive(true);
+    }
+}
