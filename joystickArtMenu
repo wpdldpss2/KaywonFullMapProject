@@ -1,0 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class joystickArtMenu : MonoBehaviour
+{
+    /*
+     * 작품 설명 창 나오는 동안 뒤에 배경 블러처리.
+     * blur에는 블러 오브젝트 넣기.
+     * artExpl에는 작품설명판넬 넣기.
+     * audioSource에는 영상/소리 넣기.
+     * 빈 오브젝트이에 이 스크립트 넣어서 버튼에 넣어두기.
+     */
+    public GameObject Blur;
+    public GameObject ArtExpl;
+    public GameObject audioSource;
+
+    void Start()
+    {
+        Blur.SetActive(false);
+        ArtExpl.SetActive(false);
+    }
+
+   
+    public void GetArt()
+    {
+        Blur.SetActive(true);
+        ArtExpl.SetActive(true);
+        audioSource.SetActive(false);
+
+    }
+    public void OffArt()
+    {
+        Blur.SetActive(false);
+        ArtExpl.SetActive(false);
+        audioSource.SetActive(true);
+
+    }
+}
