@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class BackToStart : MonoBehaviour
+{
+    /*
+     * 콜라이더 들어가면 화면 바꿔주는 스크립트.
+     * 콜라이더가 있는 오브젝트에 이 스크립트 추가.
+     * SceneName에 이동하고싶은 씬의 이름 작성.
+     * 이동 할 콜라이더의 is Trigger 체크하기.
+     */
+    public string SceneName;
+
+    public void OnTriggerEnter(Collider other)
+    {
+        SceneManager.LoadScene(SceneName);
+    }
+    
+}
