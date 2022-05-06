@@ -1,0 +1,59 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MoveGal : MonoBehaviour
+{   
+
+    /*
+     * 갤러리 이동하기.
+     * 메뉴의 갤러리 고르는 창에서 방향키를 사용하여 갤러리 넘기기.
+     * 빈 오브젝트에 이 스크립트 넣고 Gal에 각 갤러리 오브젝트 넣어주기.
+     */
+
+    public int max; //max = gal-2
+    public List<GameObject> Gal = new List<GameObject>();
+    int n;
+    
+
+    public void Start()
+    {
+        for (int i = 0; i < max+2; i++)
+        {
+            Gal[i].SetActive(false);
+            Gal[0].SetActive(true);
+        }
+    }
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            Left();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            R();
+        }
+    }
+
+    public void R()
+    {
+        if (n <=max)
+        {
+            // pannel.transform.Translate (180, 0, 0);
+            Gal[n + 1].SetActive(true);
+            Gal[n].SetActive(false);
+            n += 1;
+        }
+    }
+    public void Left()
+    {
+        if (n >= 1)
+        {
+            // pannel.transform.Translate(-180, 0, 0);
+            Gal[n - 1].SetActive(true);
+            Gal[n].SetActive(false);
+            n -= 1;
+        }
+    }
+}
