@@ -1,0 +1,122 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Cinemachine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+
+public class MoveCinemachine : MonoBehaviour
+{
+    /*
+     * 좌 우 화살표를 사용하여 뷰모드 작품 넘기기.
+     * NextScene에는 작품을 다 봤을 때 다음으로 넘어갈 씬 이름 작성.
+     * textList와 CamList에는 작품 설명과 작품을 바라보는 카메라 넣어주기.
+     * 
+     */
+
+    public string NextScene;
+    private SceneController sceneController;
+
+    public int Final;
+    
+    public List<GameObject> textList = new List<GameObject>();
+    public List<CinemachineFreeLook> CamList = new List<CinemachineFreeLook>();
+   // public List<GameObject> objList = new List<GameObject>();
+    Vector3[] OrgPos;
+    Vector3 pos;
+   
+
+    int n;
+    void Start()
+    {
+        sceneController = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneController>();
+
+
+        OrgPos = new Vector3[Final];
+
+        for (int i = 1; i < Final; i++)
+        {
+            CamList[i].Priority = 1;
+           
+            textList[i].SetActive(false);
+           // OrgPos[i] = objList[i].transform.position;
+        }
+        CamList[Final].Priority = 1;
+
+        //OrgPos[Final] = objList[Final].transform.position; 
+        //OrgPos[0] = objList[0].transform.position;
+        CamList[0].Priority = 12;
+        textList[0].SetActive(true);
+        textList[Final].SetActive(false);
+        //pos = objList[0].transform.position;
+        
+
+    }
+    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            GoBack();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            GoNext();
+        }
+        if(Input.touchCount >0)
+        {
+            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            { return; }
+            else {}
+        }
+    }
+    public void GoBack()
+    {
+
+        CamList[n - 1].Priority = 11;
+        CamList[n].Priority = 10;
+
+        textList[n - 1].SetActive(true);
+        textList[n].SetActive(false);
+
+       // objList[n].transform.position = OrgPos[n];
+        n -= 1;
+
+
+    }
+    public void GoNext()
+    {
+        CamList[n + 1].Priority = 11;
+        CamList[n].Priority = 10;
+
+
+        textList[n + 1].SetActive(true);
+        textList[n].SetActive(false);
+
+       // objList[n].transform.position = OrgPos[n];
+        n += 1;
+
+        if(n == Final)
+        {
+            sceneController.LoadScene(NextScene);
+        }
+
+    }
+   /* public void ZoomIn()
+    {
+        pos = objList[n].transform.position;
+        pos.x -= 1;
+        objList[n].transform.position = pos;
+    }
+    public void ZoomOut()
+    {
+        pos = objList[n].transform.position;
+        pos.x += 1;
+        objList[n].transform.position = pos;
+    }
+   */
+
+
+}
