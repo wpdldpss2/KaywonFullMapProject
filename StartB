@@ -1,0 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class StartB : MonoBehaviour
+{
+    /*
+     * 버튼 사용해서 씬 전환하기
+     */
+    [SerializeField]
+    public string SName;
+    private SceneController sceneController;
+
+
+    void Start()
+    {
+        sceneController = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneController>();
+    }
+    public void Starting()
+    {
+        //Application.LoadLevel(SName);
+        sceneController.LoadScene(SName);
+
+    }
+    
+}
