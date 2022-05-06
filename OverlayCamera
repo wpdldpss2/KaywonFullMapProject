@@ -1,0 +1,131 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+public class OverlayCamera : MonoBehaviour
+{
+    /*
+     * 작품 근처에 가면 버튼이 나오고 버튼을 누르면 작품설명 창 나오기.
+     * cam1에는 작품 보는 카메라 넣기.
+     * panel에는 작품설명 판넬 넣기.
+     * joystick에는 조이스틱 넣기.
+     * postpro에는 포스트프로세싱 넣기.
+     * frontglass 에는 블러 오브젝트 넣기.
+     * button에는 누를 버튼 넣기.
+     * page1,2,3에는 설명 1,2,3 넣기
+     * artwork에는 작품사진 넣기.
+     */
+
+    public Camera cam1;
+    public GameObject panel;
+    public GameObject joystick;
+    public GameObject postPro;
+    public GameObject FrontGlass;
+    public GameObject button;
+    public GameObject page1;
+    public GameObject page2;
+    public GameObject page3;
+    public GameObject artwork;
+    
+
+
+    //public Camera cam2;
+
+    bool IsOn = false;
+    void Start()
+    {
+
+        CameraOff();
+        button.SetActive(false);
+
+    }
+
+    void Update()
+    {
+        if(IsOn == true)
+        {
+            if(Input.touchCount >=2)
+            {
+                Touch touch0 = Input.GetTouch(0);
+                Touch touch1 = Input.GetTouch(1);
+
+                Vector2 touch0prevPos = touch0.position - touch0.deltaPosition;
+                Vector2 touch1prevPos = touch1.position - touch1.deltaPosition;
+
+                float prevTouchMag = (touch0prevPos - touch1prevPos).magnitude;
+                float touchDeltaMag = (touch0.position - touch1.position).magnitude;
+
+                float deltaMagDiff = prevTouchMag - touchDeltaMag;
+                if(deltaMagDiff>0)
+                {
+                    cam1.fieldOfView++;
+                }
+                if (deltaMagDiff < 0)
+                {
+                    cam1.fieldOfView--;
+                }
+            }
+        }
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+
+
+            if (IsOn == false)
+            {
+                button.SetActive(true);
+            }
+
+
+        }
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            CameraOff();
+            button.SetActive(false);
+
+        }
+    }
+    public void GetCamera()
+    {
+        cam1.gameObject.SetActive(true);        
+        artwork.SetActive(true);
+        panel.SetActive(true);
+
+        joystick.SetActive(false);
+        postPro.SetActive(true);
+        FrontGlass.SetActive(true);
+        button.SetActive(false);
+        IsOn = true;
+    }
+    public void CameraOff()
+    {
+        cam1.gameObject.SetActive(false);        
+        panel.SetActive(false);
+        joystick.SetActive(true);
+        postPro.SetActive(false);
+        FrontGlass.SetActive(false);
+        button.SetActive(true);
+
+        IsOn = false;
+    }
+    public void OutOfPage()
+    {
+        page1.SetActive(false);
+        page2.SetActive(false);
+        page3.SetActive(false);
+    }
+    
+
+}
