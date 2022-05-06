@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+public class ToStartMenu : MonoBehaviour
+{
+    /*
+     * esc 누르면 메뉴로 돌아가기
+     */
+    private SceneController sceneController;
+
+    void Start()
+    {
+        sceneController = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneController>();
+
+    }
+
+
+    void Update()
+    {
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            sceneController.LoadScene("Menu");
+        }
+    }
+}
