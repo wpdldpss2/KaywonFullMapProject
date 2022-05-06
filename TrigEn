@@ -1,0 +1,33 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TrigEn : MonoBehaviour
+{
+    /*
+     * 콜라이더 들어가면 애니메이션 키고 나오면 끄기.
+     */
+    Animator animator;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        animator.SetBool("On", false);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            animator.SetBool("On", true);
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            animator.SetBool("On", false);
+        }
+    }
+}
