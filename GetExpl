@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GetExpl : MonoBehaviour
+{
+    /*
+     * 설명판넬 켰다 끄는 스크립트.
+     * 빈 오브젝트에 이 스크립트 추가하기.
+     * expl에는 해당하는 설명 판넬 넣어주기.
+     * 버튼을 사용해서 설명 판넬 켰다 끄기.
+     */
+
+    public GameObject expl;
+    bool isAct;
+
+    void Start()
+    {
+        expl.SetActive(false);
+        isAct = false;
+    }
+
+    public void OnOff()
+    {
+        if(isAct == false)
+        {
+            expl.SetActive(true);
+            isAct = true;
+        }
+        else
+        {
+            expl.SetActive(false);
+            isAct = false;
+        }
+    }
+}
