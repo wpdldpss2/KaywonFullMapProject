@@ -6,6 +6,8 @@ public class VideoPlayOnEnter : MonoBehaviour
 {
     /*
      * 콜라이더 들어가면 비디오 시작하고 나오면 꺼지기.
+     * rImg는 앞에 켜놓는 이미지
+     * videoPlayer는 영상파일
      */
     public GameObject videoPlayer;
     public GameObject audioSource;
